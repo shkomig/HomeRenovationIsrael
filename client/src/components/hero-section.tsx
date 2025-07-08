@@ -16,8 +16,21 @@ export function HeroSection() {
     <section id="home" className="hero-gradient text-white py-20 lg:py-32">
       <div className="max-w-6xl mx-auto px-4 text-center">
         <div className="mb-8">
-          <div className="w-24 h-24 bg-white bg-opacity-20 rounded-full mx-auto mb-6 flex items-center justify-center">
-            <Hammer className="w-12 h-12 text-white" />
+          {/* Logo */}
+          <div className="mb-6 logo-container">
+            <img 
+              src="/logo.png"
+              alt={t('companyName')}
+              className="w-24 h-24 lg:w-32 lg:h-32 mx-auto object-contain hero-logo"
+              onError={(e) => {
+                // Fallback to icon if logo doesn't exist
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.nextElementSibling?.classList.remove('hidden');
+              }}
+            />
+            <div className="w-24 h-24 lg:w-32 lg:h-32 bg-white bg-opacity-20 rounded-full mx-auto hidden flex items-center justify-center">
+              <Hammer className="w-12 h-12 lg:w-16 lg:h-16 text-white" />
+            </div>
           </div>
           <h1 className="text-4xl lg:text-6xl font-bold mb-4">
             {t('companyName')}

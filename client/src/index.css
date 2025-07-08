@@ -143,4 +143,24 @@
   [dir="ltr"] .before-after.after::before {
     content: 'After';
   }
+
+  .logo-container {
+    transition: transform 0.3s ease;
+  }
+
+  .logo-container:hover {
+    transform: scale(1.05);
+  }
+
+  .hero-logo {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  }
+
+  .nav-logo {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+
+  [dir="rtl"] .flex.items-center.space-x-3 {
+    flex-direction: row-reverse;
+  }
 }

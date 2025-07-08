@@ -20,6 +20,8 @@ export class MemStorage implements IStorage {
     const lead: Lead = {
       ...insertLead,
       id,
+      notes: insertLead.notes || null,
+      language: insertLead.language || 'he',
       createdAt: new Date(),
     };
     this.leads.set(id, lead);
