@@ -1,4 +1,6 @@
 import { leads, type Lead, type InsertLead } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   createLead(lead: InsertLead): Promise<Lead>;
@@ -6,37 +8,30 @@ export interface IStorage {
   getLeadById(id: number): Promise<Lead | undefined>;
 }
 
-export class MemStorage implements IStorage {
-  private leads: Map<number, Lead>;
-  private currentId: number;
-
-  constructor() {
-    this.leads = new Map();
-    this.currentId = 1;
-  }
-
+export class DatabaseStorage implements IStorage {
   async createLead(insertLead: InsertLead): Promise<Lead> {
-    const id = this.currentId++;
-    const lead: Lead = {
-      ...insertLead,
-      id,
-      notes: insertLead.notes || null,
-      language: insertLead.language || 'he',
-      createdAt: new Date(),
-    };
-    this.leads.set(id, lead);
+    const [lead] = await db
+      .insert(leads)
+      .values({
+        ...insertLead,
+        notes: insertLead.notes || null,
+        language: insertLead.language || 'he',
+      })
+      .returning();
     return lead;
   }
 
   async getLeads(): Promise<Lead[]> {
-    return Array.from(this.leads.values()).sort((a, b) => 
+    const allLeads = await db.select().from(leads);
+    return allLeads.sort((a, b) => 
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
   }
 
   async getLeadById(id: number): Promise<Lead | undefined> {
-    return this.leads.get(id);
+    const [lead] = await db.select().from(leads).where(eq(leads.id, id));
+    return lead || undefined;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();

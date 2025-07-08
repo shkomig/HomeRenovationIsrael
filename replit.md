@@ -21,8 +21,8 @@ This is a full-stack web application for a construction and renovation services 
 - **Development**: Hot reload with tsx for TypeScript execution
 
 ### Data Storage Solutions
-- **Current**: In-memory storage using Map data structure
-- **Configured**: PostgreSQL with Drizzle ORM (ready for production deployment)
+- **Current**: PostgreSQL database with Drizzle ORM (production-ready)
+- **Connection**: Neon serverless PostgreSQL with connection pooling
 - **Migration**: Drizzle Kit for database schema management
 
 ## Key Components
@@ -118,7 +118,9 @@ The application uses a simple leads table with the following structure:
 - **Start Command**: `npm start` for production server
 
 ## Changelog
-- July 08, 2025. Initial setup
+- July 08, 2025. Initial setup with bilingual website
+- July 08, 2025. Added company logo integration in hero and navigation
+- July 08, 2025. Migrated from in-memory storage to PostgreSQL database
 
 ## User Preferences
 
