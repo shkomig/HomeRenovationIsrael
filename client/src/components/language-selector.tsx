@@ -5,7 +5,7 @@ export function LanguageSelector() {
   const { language, setLanguage } = useLanguage();
 
   return (
-    <div className="fixed top-4 left-4 z-50 rtl:left-auto rtl:right-4">
+    <div className="fixed bottom-4 right-20 z-50 rtl:right-auto rtl:left-20">
       <div className="flex bg-white rounded-full shadow-lg overflow-hidden">
         <Button
           variant={language === 'he' ? 'default' : 'ghost'}

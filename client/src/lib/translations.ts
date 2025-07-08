@@ -32,8 +32,8 @@ export const translations = {
     plumbingDesc: "שירותי אינסטלציה מקצועיים ותיקוני נזקים",
     
     // Gallery
-    workGallery: "גלריית עבודות",
-    galleryDescription: "צפו בעבודות שביצענו - לפני ואחרי השיפוץ",
+    workGallery: "הגלריה שלנו",
+    galleryDescription: "צפו בפרויקטים שביצענו - עבודות מקצועיות ואיכותיות",
     
     // Testimonials
     customerTestimonials: "המלצות לקוחות",
@@ -79,6 +79,9 @@ export const translations = {
     
     // Misc
     copied: "הועתק!",
+    
+    // Midrag Link
+    midragReviews: "לצפייה בחוות דעת באתר מידרג",
   },
   
   en: {
@@ -114,8 +117,8 @@ export const translations = {
     plumbingDesc: "Professional plumbing services and damage repairs",
     
     // Gallery
-    workGallery: "Work Gallery",
-    galleryDescription: "See our work - before and after renovation",
+    workGallery: "Our Projects Gallery",
+    galleryDescription: "See our professional and quality projects",
     
     // Testimonials
     customerTestimonials: "Customer Testimonials",
@@ -161,5 +164,8 @@ export const translations = {
     
     // Misc
     copied: "Copied!",
+    
+    // Midrag Link
+    midragReviews: "View customer reviews on Midrag",
   }
 };

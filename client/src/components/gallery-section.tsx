@@ -5,34 +5,28 @@ export function GallerySection() {
 
   const galleryImages = [
     {
-      src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-      alt: "Kitchen renovation before",
-      isBefore: true
+      src: "/img1.jpg",
+      alt: "Bathroom renovation project 1"
     },
     {
-      src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-      alt: "Kitchen renovation after",
-      isBefore: false
+      src: "/img2.jpg",
+      alt: "Bathroom renovation project 2"
     },
     {
-      src: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-      alt: "Bathroom renovation before",
-      isBefore: true
+      src: "/img3.jpg",
+      alt: "Bathroom renovation project 3"
     },
     {
-      src: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-      alt: "Bathroom renovation after",
-      isBefore: false
+      src: "/img4.jpg",
+      alt: "Kitchen renovation project"
     },
     {
-      src: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-      alt: "Living room renovation before",
-      isBefore: true
+      src: "/img5.jpg",
+      alt: "Construction project 1"
     },
     {
-      src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
-      alt: "Living room renovation after",
-      isBefore: false
+      src: "/img6.jpg",
+      alt: "Construction project 2"
     }
   ];
 
@@ -51,7 +45,7 @@ export function GallerySection() {
           {galleryImages.map((image, index) => (
             <div 
               key={index}
-              className={`gallery-item before-after ${!image.isBefore ? 'after' : ''} rounded-xl overflow-hidden shadow-lg cursor-pointer`}
+              className="simple-gallery-item cursor-pointer"
             >
               <img 
                 src={image.src} 

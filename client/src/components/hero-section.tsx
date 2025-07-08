@@ -13,25 +13,26 @@ export function HeroSection() {
   };
 
   return (
-    <section id="home" className="hero-gradient text-white py-20 lg:py-32">
+    <section id="home" className="hero-gradient text-white py-20 lg:py-32 relative">
+      {/* Logo positioned at top-right */}
+      <div className="absolute top-4 right-4 lg:top-8 lg:right-8 rtl:right-auto rtl:left-4 lg:rtl:left-8">
+        <img 
+          src="/logo.png"
+          alt={t('companyName')}
+          className="w-16 h-16 lg:w-20 lg:h-20 object-contain hero-logo"
+          onError={(e) => {
+            // Fallback to icon if logo doesn't exist
+            e.currentTarget.style.display = 'none';
+            e.currentTarget.nextElementSibling?.classList.remove('hidden');
+          }}
+        />
+        <div className="w-16 h-16 lg:w-20 lg:h-20 bg-white bg-opacity-20 rounded-full hidden flex items-center justify-center">
+          <Hammer className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
+        </div>
+      </div>
+      
       <div className="max-w-6xl mx-auto px-4 text-center">
         <div className="mb-8">
-          {/* Logo */}
-          <div className="mb-6 logo-container">
-            <img 
-              src="/logo.png"
-              alt={t('companyName')}
-              className="w-24 h-24 lg:w-32 lg:h-32 mx-auto object-contain hero-logo"
-              onError={(e) => {
-                // Fallback to icon if logo doesn't exist
-                e.currentTarget.style.display = 'none';
-                e.currentTarget.nextElementSibling?.classList.remove('hidden');
-              }}
-            />
-            <div className="w-24 h-24 lg:w-32 lg:h-32 bg-white bg-opacity-20 rounded-full mx-auto hidden flex items-center justify-center">
-              <Hammer className="w-12 h-12 lg:w-16 lg:h-16 text-white" />
-            </div>
-          </div>
           <h1 className="text-4xl lg:text-6xl font-bold mb-4">
             {t('companyName')}
           </h1>
@@ -58,6 +59,21 @@ export function HeroSection() {
           >
             <Mail className="w-5 h-5 mr-3 rtl:mr-0 rtl:ml-3" />
             {t('leaveDetails')}
+          </Button>
+        </div>
+        
+        {/* Midrag Reviews Link */}
+        <div className="mt-8">
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="bg-white bg-opacity-10 border-white text-white hover:bg-white hover:text-primary font-semibold shadow-lg backdrop-blur-sm"
+          >
+            <a href="https://midrag.co.il/SpCard/Sp/85717?sectorId=11&listId=2" target="_blank" rel="noopener noreferrer">
+              <Hammer className="w-5 h-5 mr-3 rtl:mr-0 rtl:ml-3" />
+              {t('midragReviews')}
+            </a>
           </Button>
         </div>
       </div>
