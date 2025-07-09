@@ -1,69 +1,24 @@
 import { useState } from 'react';
 import { useLanguage } from '@/hooks/use-language';
-import { useMutation } from '@tanstack/react-query';
-import { useToast } from '@/hooks/use-toast';
-import { apiRequest } from '@/lib/queryClient';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Send, Check } from 'lucide-react';
-import type { InsertLead } from '@shared/schema';
 
 export function ContactSection() {
   const { t, language } = useLanguage();
-  const { toast } = useToast();
-  const [formData, setFormData] = useState<Partial<InsertLead>>({
-    language: language
-  });
   const [showThankYou, setShowThankYou] = useState(false);
 
-  const createLeadMutation = useMutation({
-    mutationFn: (data: InsertLead) => apiRequest('POST', '/api/leads', data),
-    onSuccess: () => {
-      setShowThankYou(true);
-      setFormData({ language: language });
-      toast({
-        title: t('thankYou'),
-        description: t('thankYouMessage'),
-      });
-    },
-    onError: (error) => {
-      toast({
-        title: "Error",
-        description: "Failed to submit form. Please try again.",
-        variant: "destructive",
-      });
-    }
-  });
-
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!formData.fullName || !formData.phone || !formData.city || !formData.serviceType) {
-      toast({
-        title: "Error",
-        description: "Please fill in all required fields.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    createLeadMutation.mutate(formData as InsertLead);
+    // Don't prevent default - let FormSubmit.co handle it
+    // Show thank you modal after a brief delay to simulate submission
+    setTimeout(() => {
+      setShowThankYou(true);
+    }, 100);
   };
-
-  const serviceOptions = [
-    { value: 'general', label: t('generalRenovations') },
-    { value: 'painting', label: t('painting') },
-    { value: 'drywall', label: t('drywall') },
-    { value: 'flooring', label: t('flooring') },
-    { value: 'bathroom', label: t('bathroomRenovations') },
-    { value: 'ac', label: t('airConditioning') },
-    { value: 'plumbing', label: t('plumbing') }
-  ];
 
   return (
     <section id="contact" className="py-20 bg-gray-50">
@@ -78,7 +33,17 @@ export function ContactSection() {
         </div>
         <Card className="contact-form shadow-lg">
           <CardContent className="p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form 
+              action="https://formsubmit.co/Haimlevi274@gmail.com" 
+              method="POST" 
+              onSubmit={handleSubmit}
+              className="space-y-6"
+            >
+              {/* Hidden fields for FormSubmit.co configuration */}
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_subject" value="New Contact Form Submission - בכל מכל כל" />
+              <input type="hidden" name="_template" value="table" />
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <Label htmlFor="fullName" className="text-gray-700 font-semibold">
@@ -86,9 +51,9 @@ export function ContactSection() {
                   </Label>
                   <Input
                     id="fullName"
+                    name="Full Name"
                     type="text"
-                    value={formData.fullName || ''}
-                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                    placeholder={language === 'he' ? 'שם מלא' : 'Full Name'}
                     required
                     className="mt-2"
                   />
@@ -99,59 +64,23 @@ export function ContactSection() {
                   </Label>
                   <Input
                     id="phone"
+                    name="Phone Number"
                     type="tel"
-                    value={formData.phone || ''}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    placeholder={language === 'he' ? 'מספר טלפון' : 'Phone Number'}
                     required
                     className="mt-2"
                   />
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <Label htmlFor="city" className="text-gray-700 font-semibold">
-                    {t('city')}
-                  </Label>
-                  <Input
-                    id="city"
-                    type="text"
-                    value={formData.city || ''}
-                    onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                    required
-                    className="mt-2"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="serviceType" className="text-gray-700 font-semibold">
-                    {t('serviceType')}
-                  </Label>
-                  <Select 
-                    value={formData.serviceType || ''} 
-                    onValueChange={(value) => setFormData({ ...formData, serviceType: value })}
-                  >
-                    <SelectTrigger className="mt-2">
-                      <SelectValue placeholder={t('chooseService')} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {serviceOptions.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
                 </div>
               </div>
               <div>
-                <Label htmlFor="notes" className="text-gray-700 font-semibold">
-                  {t('additionalNotes')}
+                <Label htmlFor="message" className="text-gray-700 font-semibold">
+                  {language === 'he' ? 'פרטים נוספים' : 'Additional Details'}
                 </Label>
                 <Textarea
-                  id="notes"
+                  id="message"
+                  name="Message"
                   rows={4}
-                  value={formData.notes || ''}
-                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  placeholder={t('notesPlaceholder')}
+                  placeholder={language === 'he' ? 'פרטים נוספים אודות הפרויקט...' : 'Additional details about your project...'}
                   className="mt-2"
                 />
               </div>
@@ -159,11 +88,10 @@ export function ContactSection() {
                 <Button 
                   type="submit" 
                   size="lg"
-                  disabled={createLeadMutation.isPending}
                   className="font-semibold shadow-lg"
                 >
                   <Send className="w-5 h-5 mr-3 rtl:mr-0 rtl:ml-3" />
-                  {createLeadMutation.isPending ? 'Sending...' : t('sendMessage')}
+                  {t('sendMessage')}
                 </Button>
               </div>
             </form>
