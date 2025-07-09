@@ -121,6 +121,11 @@ The application uses a simple leads table with the following structure:
 - July 08, 2025. Initial setup with bilingual website
 - July 08, 2025. Added company logo integration in hero and navigation
 - July 08, 2025. Migrated from in-memory storage to PostgreSQL database
+- July 09, 2025. Updated gallery section with actual project images
+- July 09, 2025. Repositioned logo to top-right corner and language selector to bottom-right
+- July 09, 2025. Added Midrag customer reviews integration
+- July 09, 2025. Integrated FormSubmit.co for direct email form submissions to Haimlevi274@gmail.com
+- July 09, 2025. Added QR code integration in social sharing section and footer
 
 ## User Preferences
 

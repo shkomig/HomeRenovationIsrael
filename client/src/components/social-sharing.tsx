@@ -70,8 +70,12 @@ export function SocialSharing() {
           <h3 className="text-gray-800 font-semibold mb-4">
             {t('qrCodeSharing')}
           </h3>
-          <div className="w-32 h-32 bg-gray-100 rounded-lg mx-auto flex items-center justify-center">
-            <QrCode className="w-16 h-16 text-gray-400" />
+          <div className="w-48 h-48 mx-auto">
+            <img 
+              src="/qr-code.png" 
+              alt="QR Code for בכל מכל כל website"
+              className="w-full h-full object-contain"
+            />
           </div>
           <p className="text-gray-600 text-sm mt-4">
             {t('scanForAccess')}

@@ -60,6 +60,20 @@ export default function Home() {
                 <li>{t('flooringPlumbing')}</li>
                 <li>{t('airConditioning')}</li>
               </ul>
+              
+              {/* QR Code in Footer */}
+              <div className="mt-6 text-center">
+                <h5 className="text-sm font-semibold mb-2 text-gray-300">
+                  {t('qrCodeSharing')}
+                </h5>
+                <div className="w-20 h-20 bg-white rounded-lg mx-auto p-1">
+                  <img 
+                    src="/qr-code.png" 
+                    alt="QR Code for בכל מכל כל website"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </div>
             </div>
           </div>
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
