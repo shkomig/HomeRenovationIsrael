@@ -126,6 +126,7 @@ The application uses a simple leads table with the following structure:
 - July 09, 2025. Added Midrag customer reviews integration
 - July 09, 2025. Integrated FormSubmit.co for direct email form submissions to Haimlevi274@gmail.com
 - July 09, 2025. Added QR code integration in social sharing section and footer
+- July 10, 2025. Expanded gallery with 7 additional project images for improved showcase
 
 ## User Preferences
 

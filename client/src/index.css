@@ -133,8 +133,16 @@
   }
   
   .simple-gallery-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
+  }
+  
+  .simple-gallery-item img {
+    transition: transform 0.3s ease;
+  }
+  
+  .simple-gallery-item:hover img {
+    transform: scale(1.05);
   }
 
   .logo-container {

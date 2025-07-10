@@ -27,6 +27,34 @@ export function GallerySection() {
     {
       src: "/img6.jpg",
       alt: "Construction project 2"
+    },
+    {
+      src: "/gallery7.jpg",
+      alt: "Professional renovation project"
+    },
+    {
+      src: "/gallery8.jpg",
+      alt: "Quality construction work"
+    },
+    {
+      src: "/gallery9.jpg",
+      alt: "Modern renovation project"
+    },
+    {
+      src: "/gallery10.jpg",
+      alt: "Expert craftsmanship"
+    },
+    {
+      src: "/gallery11.jpg",
+      alt: "Professional building services"
+    },
+    {
+      src: "/gallery12.jpg",
+      alt: "Quality renovation work"
+    },
+    {
+      src: "/gallery13.jpg",
+      alt: "Expert construction project"
     }
   ];
 
@@ -41,7 +69,7 @@ export function GallerySection() {
             {t('galleryDescription')}
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {galleryImages.map((image, index) => (
             <div 
               key={index}
