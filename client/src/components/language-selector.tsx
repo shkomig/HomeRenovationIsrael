@@ -1,16 +1,20 @@
-import { useLanguage } from '@/hooks/use-language';
-import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/hooks/use-language'
+import { Button } from '@/components/ui/button'
 
 export function LanguageSelector() {
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage } = useLanguage()
 
   return (
-    <div className="fixed bottom-4 right-20 z-50 rtl:right-auto rtl:left-20">
-      <div className="flex bg-white rounded-full shadow-lg overflow-hidden">
+    <div className="language-selector">
+      <div className="flex bg-white rounded-full shadow-xl overflow-hidden border border-gray-200">
         <Button
           variant={language === 'he' ? 'default' : 'ghost'}
           size="sm"
-          className="px-4 py-2 text-sm font-semibold transition-all rounded-none"
+          className={`px-6 py-3 text-sm font-bold transition-all duration-300 rounded-l-full border-0 ${
+            language === 'he'
+              ? 'bg-primary text-white shadow-lg'
+              : 'bg-transparent text-gray-600 hover:bg-primary/10 hover:text-primary'
+          }`}
           onClick={() => setLanguage('he')}
         >
           🇮🇱 עברית
@@ -18,12 +22,16 @@ export function LanguageSelector() {
         <Button
           variant={language === 'en' ? 'default' : 'ghost'}
           size="sm"
-          className="px-4 py-2 text-sm font-semibold transition-all rounded-none"
+          className={`px-6 py-3 text-sm font-bold transition-all duration-300 rounded-r-full border-0 ${
+            language === 'en'
+              ? 'bg-primary text-white shadow-lg'
+              : 'bg-transparent text-gray-600 hover:bg-primary/10 hover:text-primary'
+          }`}
           onClick={() => setLanguage('en')}
         >
           🇺🇸 English
         </Button>
       </div>
     </div>
-  );
+  )
 }
