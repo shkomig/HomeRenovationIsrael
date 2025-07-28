@@ -1,5 +1,6 @@
 // בואו נוודא שהשרת מוגדר נכון
 import express, { type Request, Response, NextFunction } from 'express'
+import { createServer } from 'http'
 import { registerRoutes } from './routes'
 import { setupVite, serveStatic, log } from './vite'
 import 'dotenv/config'
@@ -50,17 +51,18 @@ app.use((req, res, next) => {
       res.status(status).json({ message })
     })
 
+    // הפעלת השרת
+    const port = process.env.PORT || 5000
+    const server = createServer(app)
+
     // הגדרת פיתוח (Vite) מול ייצור
     if (app.get('env') === 'development') {
-      await setupVite(app)
+      await setupVite(app, server)
     } else {
       serveStatic(app)
     }
 
-    // הפעלת השרת
-    const port = process.env.PORT || 5000
-
-    app.listen(port, () => {
+    server.listen(port, () => {
       log(`🚀 Server running at http://localhost:${port}`)
       log(`📱 Open your browser and go to: http://localhost:${port}`)
     })
